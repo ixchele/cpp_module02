@@ -56,3 +56,27 @@ float	Fixed::toFloat(void) const {
 int	Fixed::toInt(void) const {
 	return getRawBits() >> _frac;
 }
+
+bool	Fixed::operator>(const Fixed &other) {
+	return toInt() > other.toInt();
+}
+
+bool	Fixed::operator<(const Fixed &other) {
+	return toInt() < other.toInt();
+}
+
+bool	Fixed::operator>=(const Fixed &other) {
+	return toInt() >= other.toInt();
+}
+
+bool	Fixed::operator<=(const Fixed &other) {
+	return toInt() <= other.toInt();
+}
+
+bool	Fixed::operator==(const Fixed &other) {
+	return toInt() == other.toInt();
+}
+
+bool	Fixed::operator!=(const Fixed &other) {
+	return toInt() != other.toInt();
+}
