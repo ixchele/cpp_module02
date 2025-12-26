@@ -1,35 +1,13 @@
 #include <Fixed.hpp>
 #include <Point.hpp>
-#include <cmath>
-#include <iostream>
-
-float Q_rsqrt( float number )
-{
-	long i;
-	float x2, y;
-	const float threehalfs = 1.5F;
-
-	x2 = number * 0.5F;
-	y  = number;
-	i  = * ( long * ) &y;                       // evil floating point bit level hacking
-	i  = 0x5f3759df - ( i >> 1 );               // what the fuck?
-	y  = * ( float * ) &i;
-	y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
-//	y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
-
-	return number * y;
-}
-
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point) {
+	Fixed	c1 = Point::cross(a, b, point);
+	Fixed	c2 = Point::cross(b, c, point);
+	Fixed	c3 = Point::cross(c, a, point);
 
-	return true;
-}
+	bool has_neg = (c1 < Fixed(0)) || (c2 < Fixed(0)) || (c3 < Fixed(0));
+	bool has_pos = (c1 > Fixed(0)) || (c2 > Fixed(0)) || (c3 > Fixed(0));
 
-int main ()
-{
-	float	x = 5678;
-
-	std::cout << sqrtf(x) << "=" << Q_rsqrt(x) << std::endl;
-	
+	return !(has_neg && has_pos);
 }

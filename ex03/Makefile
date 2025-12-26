@@ -7,12 +7,12 @@ RESET = \033[0m
 CLEAR = \033[2K\r
 
 # --- Variables ---
-NAME = canonForm
+NAME = bsp
 CXX = c++
 INCLUDES = -I.
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 $(INCLUDES)
 LFLAGS =  $(CPPFLAGS)
-SRC = ./Fixed.cpp ./main.cpp
+SRC = ./Fixed.cpp ./Point.cpp ./bsp.cpp ./main.cpp
 OBJ = $(SRC:%.cpp=obj/%.o)
 
 all: $(NAME)

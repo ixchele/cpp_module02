@@ -14,5 +14,9 @@ class Point {
 
 	Point	&operator=(const Point &other);
 
+	const Fixed	getX(void) const;
+	const Fixed	getY(void) const;
 
+
+	static Fixed	cross(Point a, Point b, Point c);
 };
